@@ -4,11 +4,7 @@ import uno
 def get_rp_conversion_rate():
     soma_divisoes_rp_por_real = 30.42 + 32.83 + 33.37 + 33.86 + 34.22 + 35.53
     media = soma_divisoes_rp_por_real/6
-    return media  # aproximadamente 33,37
-
-
-def formatar_reais(valor):
-    return f"R$ {valor:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
+    return media
 
 
 def converter_para_reais():
@@ -48,4 +44,4 @@ def converter_para_reais():
                 continue
 
             valor_reais = rp / real_por_rp
-            celula.String = formatar_reais(valor_reais)
+            celula.Value = round(valor_reais, 2)
