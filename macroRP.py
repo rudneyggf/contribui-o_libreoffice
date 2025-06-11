@@ -1,14 +1,17 @@
 import uno
-import math
 
 
 def get_rp_conversion_rate():
-    reais = 18.90
-    rp = 575
-    return rp / reais  # Aproximadamente 8.29 RP por real
+    soma_divisoes_rp_por_real = 30.42 + 32.83 + 33.37 + 33.86 + 34.22 + 35.53
+    media = soma_divisoes_rp_por_real/6
+    return media  # aproximadamente 33,37
 
 
-def converter_para_rp():
+def formatar_reais(valor):
+    return f"R$ {valor:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
+
+
+def converter_para_reais():
     context = uno.getComponentContext()
     serviceManager = context.ServiceManager
     desktop = serviceManager.createInstanceWithContext(
@@ -18,7 +21,7 @@ def converter_para_rp():
     intervalo = model.CurrentSelection
 
     try:
-        rp_por_real = get_rp_conversion_rate()
+        real_por_rp = get_rp_conversion_rate()
     except Exception as e:
         print("Erro ao obter taxa de conversão:", e)
         return
@@ -29,6 +32,20 @@ def converter_para_rp():
     for i in range(num_rows):
         for j in range(num_cols):
             celula = intervalo.getCellByPosition(j, i)
-            valor = celula.Value
-            rp = valor * rp_por_real
-            celula.Value = math.ceil(rp)
+
+            # Garante que o termo será um float
+            try:
+                valor = float(celula.Value)
+            except Exception:
+                celula.String = "Erro ao converter"
+                continue
+
+            rp = celula.Value
+
+            # Impede que a conversão com números negativos ocorra
+            if valor <= 0:
+                celula.String = "Erro ao converter"
+                continue
+
+            valor_reais = rp / real_por_rp
+            celula.String = formatar_reais(valor_reais)
