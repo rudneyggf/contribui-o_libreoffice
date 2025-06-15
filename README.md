@@ -1,4 +1,4 @@
-# Macro de Conversão de Pontos de Riot para Reais no LibreOffice Calc
+# Macro de Conversão de Riot Points para Reais no LibreOffice Calc
 
 ## Visão Geral
 Esta é uma macro Python para o LibreOffice Calc que converte Pontos de Riot (RP) em Reais (BRL), com base em uma taxa de conversão média.
