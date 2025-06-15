@@ -29,6 +29,6 @@ cp macroRP.py ~/.config/libreoffice/4/user/Scripts/python/
 6. Selecione **Macros de Usuário > macroRP > converter_para_reais** e clique em **Executar**.
 
 ## Licença
-Este script é gratuito para uso e distribuição. Não é necessária licença para uso.
+Este script é gratuito para uso e distribuição e está regido pela GNU Lesser General Public License version 3 (LGPL v3)
 
 Caso tenha alguma dúvida ou sugestão, entre em contato com o autor: Rudney.
